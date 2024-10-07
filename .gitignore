@@ -1,2 +1,4 @@
 /venv
 /models
+server/node_modules
+server/dist
