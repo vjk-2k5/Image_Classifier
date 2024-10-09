@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import PIL
 import tensorflow as tf
+import argparse
+import json
 
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -11,7 +13,12 @@ batch_size = 32
 img_height = 180
 img_width = 180
 
-sample_img_path='../samples/sample8.jpeg'
+#sample_img_path='../samples/sample8.jpeg'
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--image', type=str, help="Path to the image file")
+args = parser.parse_args()
+sample_img_path=args.image
 
 img = tf.keras.utils.load_img(
     sample_img_path, target_size=(img_height, img_width)
@@ -29,8 +36,14 @@ class_names=['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
 predictions_lite = classify_lite(keras_tensor=img_array)['output_0']
 score_lite = tf.nn.softmax(predictions_lite)
 
-# TODO CHECK whether to return or print
 print(
     "This image most likely belongs to {} with a {:.2f} percent confidence."
     .format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
 )
+
+result = {
+    'class': class_names[np.argmax(score_lite)],
+    'accuracy': 100 * np.max(score_lite)
+}
+
+print(json.dumps(result))
