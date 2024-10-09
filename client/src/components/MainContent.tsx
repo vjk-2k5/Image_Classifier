@@ -15,10 +15,6 @@ export const MainContent = () => {
       setSelectedImage(file);
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
-
-      // Simulate image classification (replace this with actual model prediction logic)
-      setClassificationResult("Cat"); // Example classification result
-      setAccuracy(95); // Example accuracy
     }
   };
 
@@ -27,6 +23,12 @@ export const MainContent = () => {
     setPreviewUrl(null);
     setClassificationResult(null);
     setAccuracy(null);
+  };
+
+  const handleSubmit = () => {
+    // Simulate image classification (replace this with actual model prediction logic)
+    setClassificationResult("Cat"); // Example classification result
+    setAccuracy(95); // Example accuracy
   };
 
   const openUploadDialog = () => {
@@ -71,7 +73,8 @@ export const MainContent = () => {
             onChange={handleImageChange}
             className="hidden"
           />
-       </div>
+        </div>
+
         {previewUrl && (
           <div className="flex flex-col items-center mt-4">
             <h2 className="text-lg font-semibold text-blue-900 mb-2">Image Preview:</h2>
@@ -81,8 +84,14 @@ export const MainContent = () => {
               className="w-64 h-auto border border-blue-300 rounded-md shadow-md"
             />
             <Button
-              onClick={handleImageReset}
+              onClick={handleSubmit}
               className="mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
+              Submit
+            </Button>
+            <Button
+              onClick={handleImageReset}
+              className="mt-2 bg-gray-600 text-white hover:bg-gray-700 transition-colors"
             >
               Reset Image
             </Button>
@@ -115,3 +124,5 @@ export const MainContent = () => {
     </div>
   );
 };
+
+export default MainContent;
