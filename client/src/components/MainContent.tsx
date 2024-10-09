@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from "../components/Button";
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogAction } from '../components/AlertDialgoe'; // Assuming the correct imports for shadcn components
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from '../components/AlertDialgoe';
+import { Progress } from "../components/Progress";
 
 export const MainContent = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -8,6 +9,7 @@ export const MainContent = () => {
   const [classificationResult, setClassificationResult] = useState<string | null>(null);
   const [accuracy, setAccuracy] = useState<number | null>(null);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [imageUrl, setImageUrl] = useState<string>('');
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -23,6 +25,7 @@ export const MainContent = () => {
     setPreviewUrl(null);
     setClassificationResult(null);
     setAccuracy(null);
+    setImageUrl(''); // Reset image URL
   };
 
   const handleSubmit = () => {
@@ -39,9 +42,14 @@ export const MainContent = () => {
     setOpenDialog(false);
     if (source === "local") {
       document.getElementById('file-input')?.click(); // Trigger local file upload
+    } else if (source === "online-url") {
+      if (imageUrl) {
+        setPreviewUrl(imageUrl); // Set the preview URL to the user-provided image URL
+      }
     }
-    // Handle other sources (Google Drive, Online Image URL) as needed
+    // Handle other sources (Google Drive) as needed
   };
+
 
   return (
     <div className="flex flex-row p-8 space-x-8">
@@ -104,7 +112,11 @@ export const MainContent = () => {
         <h2 className="text-lg font-semibold text-blue-900 mb-2">Image Classification:</h2>
         <p className="text-blue-800">{classificationResult || "No classification yet."}</p>
         <h2 className="text-lg font-semibold text-blue-900 mb-2">Accuracy:</h2>
-        <p className="text-blue-800">{accuracy !== null ? `${accuracy}%` : "No accuracy data."}</p>
+        {accuracy !== null ? (
+          <Progress value={accuracy} />
+        ) : (
+          <p className="text-blue-800">No accuracy data.</p>
+        )}
       </div>
 
       {/* ShadCN AlertDialog for Upload Source Selection */}
@@ -114,7 +126,18 @@ export const MainContent = () => {
           <div className="space-y-4">
             <Button onClick={() => handleDialogClose("local")} className="w-full">Local File</Button>
             <Button onClick={() => handleDialogClose("google-drive")} className="w-full">Google Drive</Button>
-            <Button onClick={() => handleDialogClose("online-url")} className="w-full">Online Image URL</Button>
+            <Button onClick={() => handleDialogClose("online-url")} className="w-full">Fetch Image from URL</Button>
+          </div>
+          <div className="mt-4">
+            {openDialog && (
+              <input
+                type="text"
+                placeholder="Enter image URL"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                className="border border-blue-300 rounded-md p-2 w-full"
+              />
+            )}
           </div>
           <AlertDialogFooter>
             <Button onClick={() => setOpenDialog(false)}>Cancel</Button>
