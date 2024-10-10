@@ -1,9 +1,12 @@
+import { NavBar } from "../components/SettingsNavBar";
 import * as React from "react";
-import { NavBar } from "../components/ImgClasNavBar";
 import { Sidebar } from "../components/Sidebar";
 import{ MainContent } from "../components/ImgClasMainContent";
 import { SheetDemo } from "../components/Profile";
-export const ImgClasMainLayout = () => {
+import { SettingsMainContent } from "../components/SettingsMainContent";
+
+
+export const SettingsLayout = () => {
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -15,11 +18,11 @@ export const ImgClasMainLayout = () => {
         <NavBar />
         {/* Main Page Content */}
         <main className="p-6">
-          <MainContent/>
+          <SettingsMainContent/>
         </main>
       </div>
     </div>
   );
 };
-export default ImgClasMainLayout;
+export default SettingsLayout;
 
