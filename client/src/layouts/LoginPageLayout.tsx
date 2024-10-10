@@ -1,12 +1,30 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs';
 import { Button } from '../components/Button';
 
 export const LoginPage = () => {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleTabChange = (tab: 'login' | 'signup') => {
     setActiveTab(tab);
+  };
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent the default form submission
+    // Perform your login logic here (e.g., authentication)
+
+    // If login is successful, navigate to the dashboard
+    navigate('/dashboard'); // Adjust the path to your dashboard route
+  };
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent the default form submission
+    // Perform your signup logic here (e.g., API call)
+
+    // Navigate to the dashboard or another page if needed
+    navigate('/dashboard'); // Adjust as necessary
   };
 
   return (
@@ -32,7 +50,7 @@ export const LoginPage = () => {
 
           <TabsContent value="login" className="p-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Login</h2>
-            <form>
+            <form onSubmit={handleLogin}> {/* Add onSubmit handler */}
               <div className="mb-4">
                 <label htmlFor="email" className="block text-gray-700 mb-2">
                   Email
@@ -67,7 +85,7 @@ export const LoginPage = () => {
 
           <TabsContent value="signup" className="p-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Sign Up</h2>
-            <form>
+            <form onSubmit={handleSignup}> {/* Add onSubmit handler */}
               <div className="mb-4">
                 <label htmlFor="signup-name" className="block text-gray-700 mb-2">
                   Full Name
@@ -118,4 +136,4 @@ export const LoginPage = () => {
   );
 };
 
-
+export default LoginPage;
