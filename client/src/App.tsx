@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
 import { Button } from './components/Button'; // Adjust the import path if necessary
-import { MainLayout } from "./layouts/ImgClasMainLayout";
+import { ImgClasMainLayout } from "./layouts/ImgClasMainLayout";
 import { MainContent } from "./components/ImgClasMainContent";
+import { LoginPage } from  "./layouts/LoginPageLayout";
 const Index = () => {
-  return (
-    <MainLayout>
-      <MainContent />
-    </MainLayout>
+  return (<>
+      <LoginPage />
+    </>
   );
 };
+
 
 export default Index;
 

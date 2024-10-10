@@ -1,8 +1,8 @@
 import * as React from "react";
 import { NavBar } from "../components/ImgClasNavBar";
-import { Sidebar } from "../components/ImgClasSidebar";
+import { Sidebar } from "../components/Sidebar";
 
-export const MainLayout = ({ children }: { children: React.ReactNode }) => {
+export const ImgClasMainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex">
       {/* Sidebar */}
