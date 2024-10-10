@@ -1,18 +1,21 @@
 import React from 'react';
-import './App.css';
-import { Button } from './components/Button'; // Adjust the import path if necessary
-import { ImgClasMainLayout } from "./layouts/ImgClasMainLayout";
-import { MainContent } from "./components/ImgClasMainContent";
-import { LoginPage } from  "./layouts/LoginPageLayout";
-const Index = () => {
-  return (<>
-      <LoginPage />
-    </>
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './layouts/DashBoardLayout'; // Adjust the path as necessary
+import ImgClasMainLayout from './layouts/ImgClasMainLayout'; // Adjust the path as necessary
+
+const App = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/image-classifier" element={<ImgClasMainLayout />} />
+        {/* Add other routes here as needed */}
+      </Routes>
+    </Router>
   );
 };
 
-
-export default Index;
+export default App;
 
 
 
