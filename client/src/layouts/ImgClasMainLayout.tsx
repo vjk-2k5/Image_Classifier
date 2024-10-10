@@ -13,7 +13,6 @@ export const ImgClasMainLayout = () => {
       <div className="flex-1">
         {/* Header */}
         <NavBar />
-        < SheetDemo />
         {/* Main Page Content */}
         <main className="p-6">
           <MainContent/>
