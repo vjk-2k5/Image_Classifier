@@ -1,11 +1,19 @@
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import { Card, CardHeader, CardContent, CardFooter } from '../components/Card';
 import { Button } from '../components/Button';
+import { Sidebar } from '../components/Sidebar';
+import { DashboardNavBar } from '../components/DashBoardNavBar';
 
 export const Dashboard = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation
 
   return (
+    <div className="flex">
+      {/* Sidebar */}
+      <Sidebar />
+      <div className="flex-1">
+        {/* Header */}
+        <DashboardNavBar />
     <div className="flex justify-around items-center h-screen bg-gray-100">
       {/* Image Classifier Card */}
       <Card className="max-w-xs bg-purple-600 text-white rounded-lg shadow-lg p-6">
@@ -63,6 +71,8 @@ export const Dashboard = () => {
           </Button>
         </CardFooter>
       </Card>
+    </div>
+    </div>
     </div>
   );
 };
