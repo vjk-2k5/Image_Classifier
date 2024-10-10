@@ -7,7 +7,7 @@ export const uploadImage = async (req: Request, res: Response): Promise<void> =>
     const imagePath = req.file?.path; 
 
     // TODO ## Change script tmrw
-    exec(`python ../python-scripts/classify_image.py --image ${imagePath}`, async (error, stdout, stderr) => {
+    exec(`python ../scripts/classify_image.py --image ${imagePath}`, async (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);
         res.status(500).send('Error processing image');
