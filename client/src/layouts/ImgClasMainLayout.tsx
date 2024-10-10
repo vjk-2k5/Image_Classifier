@@ -1,8 +1,8 @@
 import * as React from "react";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../components/ImgClasNavBar";
 import { Sidebar } from "../components/Sidebar";
-
-export const MainLayout = ({ children }: { children: React.ReactNode }) => {
+import{ MainContent } from "../components/ImgClasMainContent";
+export const ImgClasMainLayout = () => {
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -15,9 +15,11 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
 
         {/* Main Page Content */}
         <main className="p-6">
-          {children}
+          <MainContent/>
         </main>
       </div>
     </div>
   );
 };
+export default ImgClasMainLayout;
+

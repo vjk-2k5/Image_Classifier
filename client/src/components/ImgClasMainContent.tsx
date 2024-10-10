@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from "../components/Button";
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from '../components/AlertDialgoe';
-import { Progress } from "../components/Progress";
+import { Button } from "./Button";
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from './AlertDialgoe';
 
 export const MainContent = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -31,7 +30,7 @@ export const MainContent = () => {
   const handleSubmit = () => {
     // Simulate image classification (replace this with actual model prediction logic)
     setClassificationResult("Cat"); // Example classification result
-    setAccuracy(95); // Example accuracy
+    setAccuracy(85); // Example accuracy value (replace with actual accuracy)
   };
 
   const openUploadDialog = () => {
@@ -47,15 +46,24 @@ export const MainContent = () => {
         setPreviewUrl(imageUrl); // Set the preview URL to the user-provided image URL
       }
     }
-    // Handle other sources (Google Drive) as needed
   };
 
+  // Helper function to determine progress bar color based on accuracy level
+  const getProgressBarColor = (accuracy: number) => {
+    if (accuracy >= 80) {
+      return 'bg-green-500'; // Green for high accuracy
+    } else if (accuracy >= 50) {
+      return 'bg-yellow-500'; // Yellow for moderate accuracy
+    } else {
+      return 'bg-red-500'; // Red for low accuracy
+    }
+  };
 
   return (
     <div className="flex flex-row p-8 space-x-8">
       {/* Left Column for Image Upload */}
       <div className="flex flex-col items-start w-1/2">
-        <h1 className="text-2xl font-bold text-blue-900 mb-4">Upload an Image</h1>
+        <h1 className="text-3xl font-bold text-blue-900 mb-4">Upload an Image</h1>
         <div className="flex items-center mb-4 border border-blue-300 rounded-md bg-blue-50 p-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,13 +101,13 @@ export const MainContent = () => {
             />
             <Button
               onClick={handleSubmit}
-              className="mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+              className="mt-4 w-40 bg-blue-600 text-white font-semibold py-2 px-4 rounded-md shadow hover:bg-blue-700 transition-colors"
             >
               Submit
             </Button>
             <Button
               onClick={handleImageReset}
-              className="mt-2 bg-gray-600 text-white hover:bg-gray-700 transition-colors"
+              className="mt-2 w-40 bg-gray-600 text-white font-semibold py-2 px-4 rounded-md shadow hover:bg-gray-700 transition-colors"
             >
               Reset Image
             </Button>
@@ -109,13 +117,24 @@ export const MainContent = () => {
 
       {/* Right Column for Classification Result */}
       <div className="flex flex-col items-start w-1/2">
-        <h2 className="text-lg font-semibold text-blue-900 mb-2">Image Classification:</h2>
-        <p className="text-blue-800">{classificationResult || "No classification yet."}</p>
-        <h2 className="text-lg font-semibold text-blue-900 mb-2">Accuracy:</h2>
+        <h2 className="text-2xl font-semibold text-blue-900 mb-2">Image Classification</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          {classificationResult || "No classification yet."}
+        </p>
+        <h2 className="text-2xl font-semibold text-blue-900 mb-2">Accuracy</h2>
+
         {accuracy !== null ? (
-          <Progress value={accuracy} />
+          <div className="w-full bg-gray-200 rounded-full h-6 mt-4 relative">
+            <div
+              className={`h-6 rounded-full ${getProgressBarColor(accuracy)}`}
+              style={{ width: `${accuracy}%` }}
+            ></div>
+            <span className="absolute inset-0 flex justify-center items-center text-white font-medium">
+              {accuracy}%
+            </span>
+          </div>
         ) : (
-          <p className="text-blue-800">No accuracy data.</p>
+          <p className="text-lg text-gray-700">No accuracy data.</p>
         )}
       </div>
 
