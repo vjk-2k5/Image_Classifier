@@ -3,6 +3,7 @@ import { Card, CardHeader, CardContent, CardFooter } from '../components/Card';
 import { Button } from '../components/Button';
 import { Sidebar } from '../components/Sidebar';
 import { DashboardNavBar } from '../components/DashBoardNavBar';
+import { SheetDemo } from '../components/Profile';
 
 export const Dashboard = () => {
   const navigate = useNavigate(); // Use useNavigate for navigation

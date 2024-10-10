@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavBar } from "../components/ImgClasNavBar";
 import { Sidebar } from "../components/Sidebar";
 import{ MainContent } from "../components/ImgClasMainContent";
+import { SheetDemo } from "../components/Profile";
 export const ImgClasMainLayout = () => {
   return (
     <div className="flex">
@@ -12,7 +13,7 @@ export const ImgClasMainLayout = () => {
       <div className="flex-1">
         {/* Header */}
         <NavBar />
-
+        < SheetDemo />
         {/* Main Page Content */}
         <main className="p-6">
           <MainContent/>
