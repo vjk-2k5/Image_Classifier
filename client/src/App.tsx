@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import { Button } from './components/Button'; // Adjust the import path if necessary
-import { MainLayout } from "./layouts/MainLayout";
-import { MainContent } from "./components/MainContent";
-const App = () => {
+import { MainLayout } from "./layouts/ImgClasMainLayout";
+import { MainContent } from "./components/ImgClasMainContent";
+const Index = () => {
   return (
     <MainLayout>
       <MainContent />
@@ -11,5 +11,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default Index;
+
+
 

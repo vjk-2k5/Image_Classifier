@@ -1,13 +1,13 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { Button } from "../components/Button"; // Assuming you already have a Button component
+import { Button } from "./Button"; // Assuming you already have a Button component
 import { FaHome, FaCog, FaUser, FaSignOutAlt } from "react-icons/fa"; // Importing icons
 
 export const Sidebar = () => {
   return (
     <aside className="h-screen w-64 bg-white text-blue-900 shadow-lg border-r border-blue-200">
       <nav className="p-6">
-        <h2 className="text-lg font-semibold mb-6 text-blue-900">Image Classifier</h2>
+        <h2 className="text-lg font-semibold mb-6 text-blue-900">Image Analyser</h2>
         <ul>
           <li className="mb-4">
             <Button

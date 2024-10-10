@@ -1,6 +1,6 @@
 import * as React from "react";
-import { NavBar } from "../components/NavBar";
-import { Sidebar } from "../components/Sidebar";
+import { NavBar } from "../components/ImgClasNavBar";
+import { Sidebar } from "../components/ImgClasSidebar";
 
 export const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
