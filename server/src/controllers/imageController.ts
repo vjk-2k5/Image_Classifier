@@ -6,7 +6,6 @@ export const uploadImage = async (req: Request, res: Response): Promise<void> =>
   try {
     const imagePath = req.file?.path; 
 
-    // TODO ## Change script tmrw
     exec(`python ../scripts/classify_image.py --image ${imagePath}`, async (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);
@@ -29,4 +28,21 @@ export const uploadImage = async (req: Request, res: Response): Promise<void> =>
     console.error('Error:', error);
     res.status(500).send('Server error');
   }
+};
+
+export const getResults = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const results = await ImageModel.find();
+    res.status(200).json({
+      success: true,
+      count: results.length,
+      data: results,
+    });
+  }
+  catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Server error');
+  }
+
+
 };
