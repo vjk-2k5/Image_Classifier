@@ -1,7 +1,7 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { Button } from "./Button"; // Assuming you already have a Button component
-import { FaHome, FaCog, FaUser, FaSignOutAlt } from "react-icons/fa"; // Importing icons
+import { FaHome, FaCog, FaImage, FaBrain, FaSignOutAlt } from "react-icons/fa"; // Importing icons
 
 export const Sidebar = () => {
   return (
@@ -15,9 +15,9 @@ export const Sidebar = () => {
               asChild
               className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
             >
-              <a href="#dashboard" className="flex items-center">
+              <a href="/dashboard" className="flex items-center">
                 <FaHome className="w-5 h-5" />
-                <span className="text-md">DashBoard</span>
+                <span className="text-md">Dashboard</span>
               </a>
             </Button>
           </li>
@@ -27,7 +27,31 @@ export const Sidebar = () => {
               asChild
               className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
             >
-              <a href="#settings" className="flex items-center">
+              <a href="/image-classifier" className="flex items-center">
+                <FaImage className="w-5 h-5" />
+                <span className="text-md">Image Classifier</span>
+              </a>
+            </Button>
+          </li>
+          <li className="mb-4">
+            <Button
+              variant="link"
+              asChild
+              className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
+            >
+              <a href="/image-recognizer" className="flex items-center">
+                <FaBrain className="w-5 h-5" />
+                <span className="text-md">Image Recognizer</span>
+              </a>
+            </Button>
+          </li>
+          <li className="mb-4">
+            <Button
+              variant="link"
+              asChild
+              className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
+            >
+              <a href="/settings" className="flex items-center">
                 <FaCog className="w-5 h-5" />
                 <span className="text-md">Settings</span>
               </a>
@@ -39,19 +63,7 @@ export const Sidebar = () => {
               asChild
               className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
             >
-              <a href="#profile" className="flex items-center">
-                <FaUser className="w-5 h-5" />
-                <span className="text-md">Profile</span>
-              </a>
-            </Button>
-          </li>
-          <li className="mb-4">
-            <Button
-              variant="link"
-              asChild
-              className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
-            >
-              <a href="#logout" className="flex items-center">
+              <a href="/" className="flex items-center">
                 <FaSignOutAlt className="w-5 h-5" />
                 <span className="text-md">Logout</span>
               </a>
@@ -62,3 +74,5 @@ export const Sidebar = () => {
     </aside>
   );
 };
+
+export default Sidebar;
