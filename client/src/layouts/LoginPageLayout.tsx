@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs';
 import { Button } from '../components/Button';
 
+
 // Import icons for social logins
 import { FaGoogle, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
