@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs';
 import { Button } from '../components/Button';
 
+// Import icons for social logins
+import { FaGoogle, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
+
 export const LoginPage = () => {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
   const navigate = useNavigate(); // Initialize useNavigate
@@ -81,6 +84,19 @@ export const LoginPage = () => {
                 Login
               </Button>
             </form>
+
+            {/* Divider */}
+            <div className="my-4 text-center text-gray-500">or</div>
+
+            {/* Social Login Buttons */}
+            <div className="flex flex-col space-y-3">
+              <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
+                <FaGithub className="mr-2" /> Continue with GitHub
+              </Button>
+              <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
+                <FaGoogle className="mr-2" /> Continue with Google
+              </Button>
+            </div>
           </TabsContent>
 
           <TabsContent value="signup" className="p-4">
@@ -129,6 +145,19 @@ export const LoginPage = () => {
                 Sign Up
               </Button>
             </form>
+
+            {/* Divider */}
+            <div className="my-4 text-center text-gray-500">or</div>
+
+            {/* Social Signup Buttons */}
+            <div className="flex flex-col space-y-3">
+              <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
+                <FaGithub className="mr-2" /> Continue with GitHub
+              </Button>
+              <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
+                <FaGoogle className="mr-2" /> Continue with Google
+              </Button>
+            </div>
           </TabsContent>
         </Tabs>
       </div>
