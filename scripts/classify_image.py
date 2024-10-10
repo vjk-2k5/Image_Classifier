@@ -36,10 +36,10 @@ class_names=['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
 predictions_lite = classify_lite(keras_tensor=img_array)['output_0']
 score_lite = tf.nn.softmax(predictions_lite)
 
-print(
-    "This image most likely belongs to {} with a {:.2f} percent confidence."
-    .format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
-)
+#print(
+#    "This image most likely belongs to {} with a {:.2f} percent confidence."
+#    .format(class_names[np.argmax(score_lite)], 100 * np.max(score_lite))
+#)
 
 result = {
     'class': class_names[np.argmax(score_lite)],

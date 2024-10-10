@@ -1,10 +1,10 @@
 import express from 'express';
-//import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import connectDB from './config/db';
 import imageRoutes from './routes/imageRoutes';
 import path from 'path';
 
-//dotenv.config();
+dotenv.config();
 // TODO Check this file 
 
 const app = express();
