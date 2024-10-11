@@ -30,14 +30,36 @@ export const MainContent = () => {
   };
 
   const handleSubmit = async () => {
-    if (!selectedImage) {
-      console.error('No image selected');
+    // Check if an image has been selected or if an image URL is provided
+    if (!selectedImage && !imageUrl) {
+      console.error('No image selected or URL provided');
       return;
     }
-
+  
     const formData = new FormData();
-    formData.append('image', selectedImage);
-
+  
+    
+    if (selectedImage) {
+      console.log("IN Local");
+      formData.append('image', selectedImage);
+    } else if (imageUrl) {
+      console.log("IN URL");
+      
+      try {
+        const response = await fetch(imageUrl);
+        if (!response.ok) {
+          throw new Error('Failed to fetch image from URL');
+        }
+        
+        const blob = await response.blob(); 
+        const file = new File([blob], 'uploaded-image.jpg', { type: blob.type }); 
+        formData.append('image', file); 
+      } catch (error) {
+        console.error('Error fetching image from URL:', error);
+        return; 
+      }
+    }
+  
     try {
       const response = await fetch('http://localhost:5000/api/images/upload', {
         method: 'POST',
@@ -50,11 +72,14 @@ export const MainContent = () => {
   
       const result = await response.json();
       setClassificationResult(result.classification);
-      setAccuracy(result.accuracy);
+      setAccuracy(Math.round(result.accuracy));
     } catch (error) {
       console.error('Error uploading image:', error);
     }
+    setSelectedImage(null);
+    setImageUrl('');
   };
+  
 
   const openUploadDialog = () => {
     setOpenDialog(true);
@@ -63,23 +88,24 @@ export const MainContent = () => {
   const handleDialogClose = (source: string) => {
     setOpenDialog(false);
     if (source === "local") {
-      document.getElementById('file-input')?.click(); // Trigger local file upload
+      document.getElementById('file-input')?.click(); 
     } else if (source === "online-url") {
       if (imageUrl) {
-        setPreviewUrl(imageUrl); // Set the preview URL to the user-provided image URL
-        // You may want to download this image on the backend later for processing
+        setPreviewUrl(imageUrl); 
+        
       }
     }
   };
 
-  // Helper function to determine progress bar color based on accuracy level
+
+  
   const getProgressBarColor = (accuracy: number) => {
     if (accuracy >= 80) {
-      return 'bg-green-500'; // Green for high accuracy
+      return 'bg-green-500';
     } else if (accuracy >= 50) {
-      return 'bg-yellow-500'; // Yellow for moderate accuracy
+      return 'bg-yellow-500';
     } else {
-      return 'bg-red-500'; // Red for low accuracy
+      return 'bg-red-500'; 
     }
   };
 
