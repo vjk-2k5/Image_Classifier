@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from "./Button";
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from './AlertDialgoe';
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from './AlertDialog';
 
-export const ImageRecognizer = () => {
+const ImageRecognizer = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [recognitionResult, setRecognitionResult] = useState<string | null>(null);
@@ -24,13 +24,18 @@ export const ImageRecognizer = () => {
     setPreviewUrl(null);
     setRecognitionResult(null);
     setConfidence(null);
-    setImageUrl(''); // Reset image URL
+    setImageUrl(''); 
   };
 
   const handleSubmit = () => {
-    // Simulate image recognition (replace this with actual model prediction logic)
-    setRecognitionResult("Dog"); // Example recognition result
-    setConfidence(90); // Example confidence value (replace with actual confidence)
+
+    if (!selectedImage && !imageUrl) {
+      console.error('No image selected or URL provided');
+      return;
+    }
+    
+    setRecognitionResult("Dog"); 
+    setConfidence(90); 
   };
 
   const openUploadDialog = () => {
@@ -40,28 +45,26 @@ export const ImageRecognizer = () => {
   const handleDialogClose = (source: string) => {
     setOpenDialog(false);
     if (source === "local") {
-      document.getElementById('file-input')?.click(); // Trigger local file upload
+      document.getElementById('file-input')?.click(); 
     } else if (source === "online-url") {
       if (imageUrl) {
-        setPreviewUrl(imageUrl); // Set the preview URL to the user-provided image URL
+        setPreviewUrl(imageUrl); 
       }
     }
   };
 
-  // Helper function to determine progress bar color based on confidence level
   const getProgressBarColor = (confidence: number) => {
     if (confidence >= 80) {
-      return 'bg-green-500'; // Green for high confidence
+      return 'bg-green-500'; 
     } else if (confidence >= 50) {
-      return 'bg-yellow-500'; // Yellow for moderate confidence
+      return 'bg-yellow-500'; 
     } else {
-      return 'bg-red-500'; // Red for low confidence
+      return 'bg-red-500'; 
     }
   };
 
   return (
     <div className="flex flex-row p-8 space-x-8">
-      {/* Left Column for Image Upload */}
       <div className="flex flex-col items-start w-1/2">
         <h1 className="text-3xl font-bold text-blue-900 mb-4">Upload an Image</h1>
         <div className="flex items-center mb-4 border border-blue-300 rounded-md bg-blue-50 p-2">
@@ -115,7 +118,7 @@ export const ImageRecognizer = () => {
         )}
       </div>
 
-      {/* Right Column for Recognition Result */}
+
       <div className="flex flex-col items-start w-1/2">
         <h2 className="text-2xl font-semibold text-blue-900 mb-2">Image Recognition</h2>
         <p className="text-lg text-gray-700 mb-4">
@@ -138,7 +141,6 @@ export const ImageRecognizer = () => {
         )}
       </div>
 
-      {/* ShadCN AlertDialog for Upload Source Selection */}
       <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>Select Upload Source</AlertDialogHeader>

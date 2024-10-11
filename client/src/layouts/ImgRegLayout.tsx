@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavBar } from "../components/ImgRegNavBar";
 import { Sidebar } from "../components/Sidebar";
-import{ ImageRecognizer } from "../components/ImgRegMainContent";
+import ImageRecognizer from "../components/ImgRegMainContent";
 
 const ImgClasMainLayout = () => {
   return (

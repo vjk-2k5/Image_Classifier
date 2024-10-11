@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from './Button'; // Assuming you have a Button component
-import { Input } from './Input'; // Assuming you have an Input component
-import { Label } from './Label'; // Assuming you have a Label component
+import { Button } from './Button'; 
+import { Input } from './Input'; 
+import { Label } from './Label'; 
 
 export const SettingsMainContent = () => {
   const [profile, setProfile] = useState({
@@ -17,7 +17,6 @@ export const SettingsMainContent = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Perform your update logic here
     console.log('Updated Profile: ', profile);
   };
 
@@ -26,7 +25,6 @@ export const SettingsMainContent = () => {
       <h2 className="text-2xl font-bold mb-6">Settings</h2>
 
       <form onSubmit={handleSubmit}>
-        {/* Profile Section */}
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-4">Profile Information</h3>
 
@@ -57,7 +55,6 @@ export const SettingsMainContent = () => {
           </div>
         </div>
 
-        {/* Password Section */}
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-4">Change Password</h3>
 
@@ -75,13 +72,11 @@ export const SettingsMainContent = () => {
           </div>
         </div>
 
-        {/* Save Changes Button */}
         <Button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
           Save Changes
         </Button>
       </form>
-
-      {/* Additional Account Settings */}
+      
       <div className="mt-8">
         <h3 className="text-lg font-semibold mb-4">Account Settings</h3>
         <Button variant="outline" className="w-full py-2 text-red-600 border-red-600 hover:bg-red-100">

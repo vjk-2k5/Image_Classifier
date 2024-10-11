@@ -1,6 +1,4 @@
-import * as React from "react";
-import { cn } from "../lib/utils";
-import { Button } from "./Button"; // Assuming you already have a Button component
+import { Button } from "./Button"; 
 
 export const NavBar = () => {
   return (

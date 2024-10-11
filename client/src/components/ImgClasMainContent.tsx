@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button } from "./Button";
-import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from './AlertDialgoe';
+import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from './AlertDialog';
 
-export const MainContent = () => {
+const MainContent = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [classificationResult, setClassificationResult] = useState<string | null>(null);
@@ -26,11 +26,10 @@ export const MainContent = () => {
     setPreviewUrl(null);
     setClassificationResult(null);
     setAccuracy(null);
-    setImageUrl(''); // Reset image URL
+    setImageUrl(''); 
   };
 
   const handleSubmit = async () => {
-    // Check if an image has been selected or if an image URL is provided
     if (!selectedImage && !imageUrl) {
       console.error('No image selected or URL provided');
       return;
@@ -97,8 +96,6 @@ export const MainContent = () => {
     }
   };
 
-
-  
   const getProgressBarColor = (accuracy: number) => {
     if (accuracy >= 80) {
       return 'bg-green-500';
@@ -111,7 +108,6 @@ export const MainContent = () => {
 
   return (
     <div className="flex flex-row p-8 space-x-8">
-      {/* Left Column for Image Upload */}
       <div className="flex flex-col items-start w-1/2">
         <h1 className="text-3xl font-bold text-blue-900 mb-4">Upload an Image</h1>
         <div className="flex items-center mb-4 border border-blue-300 rounded-md bg-blue-50 p-2">
@@ -165,7 +161,6 @@ export const MainContent = () => {
         )}
       </div>
 
-      {/* Right Column for Classification Result */}
       <div className="flex flex-col items-start w-1/2">
         <h2 className="text-2xl font-semibold text-blue-900 mb-2">Image Classification</h2>
         <p className="text-lg text-gray-700 mb-4">
@@ -188,7 +183,6 @@ export const MainContent = () => {
         )}
       </div>
 
-      {/* ShadCN AlertDialog for Upload Source Selection */}
       <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>Select Upload Source</AlertDialogHeader>

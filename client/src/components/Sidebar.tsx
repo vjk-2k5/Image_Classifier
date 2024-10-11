@@ -1,7 +1,6 @@
-import * as React from "react";
-import { cn } from "../lib/utils";
-import { Button } from "./Button"; // Assuming you already have a Button component
-import { FaHome, FaCog, FaImage, FaBrain, FaSignOutAlt } from "react-icons/fa"; // Importing icons
+
+import { Button } from "./Button"; 
+import { FaHome, FaCog, FaImage, FaBrain, FaSignOutAlt } from "react-icons/fa"; 
 
 export const Sidebar = () => {
   return (

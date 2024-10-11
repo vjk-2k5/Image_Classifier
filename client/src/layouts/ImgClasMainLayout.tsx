@@ -1,7 +1,7 @@
 import * as React from "react";
 import { NavBar } from "../components/ImgClasNavBar";
 import { Sidebar } from "../components/Sidebar";
-import{ MainContent } from "../components/ImgClasMainContent";
+import MainContent  from "../components/ImgClasMainContent";
 
 const ImgClasMainLayout = () => {
   return (
