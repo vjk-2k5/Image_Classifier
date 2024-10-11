@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom'; 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/Tabs';
 import { Button } from '../components/Button';
 
-
-// Import icons for social logins
-import { FaGoogle, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { FaGoogle, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export const LoginPage = () => {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate(); 
 
   const handleTabChange = (tab: 'login' | 'signup') => {
     setActiveTab(tab);
   };
 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault(); 
     // Perform your login logic here (e.g., authentication)
-
     // If login is successful, navigate to the dashboard
-    navigate('/dashboard'); // Adjust the path to your dashboard route
+
+    navigate('/dashboard'); 
   };
 
   const handleSignup = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault(); 
     // Perform your signup logic here (e.g., API call)
-
     // Navigate to the dashboard or another page if needed
-    navigate('/dashboard'); // Adjust as necessary
+
+    navigate('/dashboard'); 
   };
 
   return (
@@ -54,7 +52,7 @@ export const LoginPage = () => {
 
           <TabsContent value="login" className="p-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Login</h2>
-            <form onSubmit={handleLogin}> {/* Add onSubmit handler */}
+            <form onSubmit={handleLogin}>
               <div className="mb-4">
                 <label htmlFor="email" className="block text-gray-700 mb-2">
                   Email
@@ -86,10 +84,8 @@ export const LoginPage = () => {
               </Button>
             </form>
 
-            {/* Divider */}
             <div className="my-4 text-center text-gray-500">or</div>
 
-            {/* Social Login Buttons */}
             <div className="flex flex-col space-y-3">
               <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
                 <FaGithub className="mr-2" /> Continue with GitHub
@@ -97,12 +93,15 @@ export const LoginPage = () => {
               <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
                 <FaGoogle className="mr-2" /> Continue with Google
               </Button>
+              <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
+                <FaLinkedin className="mr-2" /> Continue with LinkedIn
+              </Button>
             </div>
           </TabsContent>
 
           <TabsContent value="signup" className="p-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Sign Up</h2>
-            <form onSubmit={handleSignup}> {/* Add onSubmit handler */}
+            <form onSubmit={handleSignup}> 
               <div className="mb-4">
                 <label htmlFor="signup-name" className="block text-gray-700 mb-2">
                   Full Name
@@ -147,16 +146,17 @@ export const LoginPage = () => {
               </Button>
             </form>
 
-            {/* Divider */}
             <div className="my-4 text-center text-gray-500">or</div>
 
-            {/* Social Signup Buttons */}
             <div className="flex flex-col space-y-3">
               <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
                 <FaGithub className="mr-2" /> Continue with GitHub
               </Button>
               <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
                 <FaGoogle className="mr-2" /> Continue with Google
+              </Button>
+              <Button className="flex items-center justify-center bg-gray-100 text-gray-700 hover:bg-gray-200 py-2 rounded-md shadow">
+                <FaLinkedin className="mr-2" /> Continue with LinkedIn
               </Button>
             </div>
           </TabsContent>
