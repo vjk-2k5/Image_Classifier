@@ -10,10 +10,12 @@ export const MainContent = () => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>('');
 
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setSelectedImage(file);
+      
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
     }
@@ -27,10 +29,31 @@ export const MainContent = () => {
     setImageUrl(''); // Reset image URL
   };
 
-  const handleSubmit = () => {
-    // Simulate image classification (replace this with actual model prediction logic)
-    setClassificationResult("Cat"); // Example classification result
-    setAccuracy(85); // Example accuracy value (replace with actual accuracy)
+  const handleSubmit = async () => {
+    if (!selectedImage) {
+      console.error('No image selected');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('image', selectedImage);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/images/upload', {
+        method: 'POST',
+        body: formData,
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to upload image');
+      }
+  
+      const result = await response.json();
+      setClassificationResult(result.classification);
+      setAccuracy(result.accuracy);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
   };
 
   const openUploadDialog = () => {
@@ -44,6 +67,7 @@ export const MainContent = () => {
     } else if (source === "online-url") {
       if (imageUrl) {
         setPreviewUrl(imageUrl); // Set the preview URL to the user-provided image URL
+        // You may want to download this image on the backend later for processing
       }
     }
   };

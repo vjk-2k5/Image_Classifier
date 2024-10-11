@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import connectDB from './config/db';
 import imageRoutes from './routes/imageRoutes';
 import path from 'path';
+import cors from 'cors';
 
 dotenv.config();
 // TODO Check this file 
@@ -13,7 +14,7 @@ connectDB();
 
 app.use(express.json());
 
-
+app.use(cors());
 app.use('/api/images', imageRoutes);
 
 
