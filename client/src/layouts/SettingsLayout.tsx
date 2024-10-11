@@ -1,5 +1,4 @@
 import { NavBar } from "../components/SettingsNavBar";
-import * as React from "react";
 import { Sidebar } from "../components/Sidebar";
 import { SettingsMainContent } from "../components/SettingsMainContent";
 

@@ -1,6 +1,6 @@
 
 import { Button } from "./Button"; 
-import { FaHome, FaCog, FaImage, FaBrain, FaSignOutAlt } from "react-icons/fa"; 
+import { FaHome, FaCog, FaImage, FaBrain, FaSignOutAlt,FaHistory } from "react-icons/fa"; 
 
 export const Sidebar = () => {
   return (
@@ -65,6 +65,18 @@ export const Sidebar = () => {
               <a href="/" className="flex items-center">
                 <FaSignOutAlt className="w-5 h-5" />
                 <span className="text-md">Logout</span>
+              </a>
+            </Button>
+          </li>
+          <li className="mb-4">
+            <Button
+              variant="link"
+              asChild
+              className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
+            >
+              <a href="/history" className="flex items-center">
+                <FaHistory className="w-5 h-5" />
+                <span className="text-md">History</span>
               </a>
             </Button>
           </li>
