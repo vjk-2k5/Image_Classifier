@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UserModel } from '../models/UserModel';
+import { UserModel ,IUser } from '../models/UserModel';
 import bcrypt from 'bcryptjs';
 import { generateToken } from '../utils/jwt';
 
@@ -7,8 +7,13 @@ import { generateToken } from '../utils/jwt';
 export const registerUser = async (req: Request, res: Response) => {
     const { fullName, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const user = new UserModel({ fullName, email, password: hashedPassword });
+    const existingUser: IUser | null = await UserModel.findOne({ email });
+    if (existingUser) {
+        res.status(400).json({ msg: 'Email already exists' });
+        return;
+    }
+    
     await user.save();
     res.status(201).json({ success: true, data: user });
 };
