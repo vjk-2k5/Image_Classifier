@@ -4,6 +4,7 @@ import connectDB from './config/db';
 import imageRoutes from './routes/imageRoutes';
 import userRoutes from './routes/userRoutes';
 import cors from 'cors';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config(); 
 
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/api/images', imageRoutes);
 app.use('/uploads', express.static('uploads'));
 app.use('/api/user',userRoutes)
+app.use('/api/auth', authRoutes);
 
 //app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
