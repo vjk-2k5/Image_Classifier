@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from "./Button";
 import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogFooter } from './AlertDialog';
+import { getToken } from '../utils/jwt';
 
 const MainContent = () => {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -63,6 +64,9 @@ const MainContent = () => {
       const response = await fetch('http://localhost:5000/api/images/upload', {
         method: 'POST',
         body: formData,
+        headers: {
+          'Authorization': `Bearer ${getToken()}`,
+        },
       });
   
       if (!response.ok) {

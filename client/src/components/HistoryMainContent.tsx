@@ -2,6 +2,9 @@ import  { useState, useEffect } from 'react';
 import { Button } from '../components/Button'; 
 import { Input } from '../components/Input';   
 import { Label } from '../components/Label';   
+import { getToken } from '../utils/jwt';
+
+
 
 type result = {
   _id: string;
@@ -20,7 +23,9 @@ const HistoryMainContent = () => {
   useEffect(() => {
     const fetchHistory = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/images/results');
+        const response = await fetch('http://localhost:5000/api/images/results', {
+          headers: { 'Authorization': `Bearer ${getToken()}` },
+        });
         const data = await response.json();
 
         if (data && data.data) {
