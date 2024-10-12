@@ -1,7 +1,3 @@
-import * as React from "react";
-import { cn } from "../lib/utils"; // Ensure this path is correct
-import { Button } from "./Button"; // Ensure this path is correct
-import { Link } from "react-router-dom"; // Ensure this import is correct
 import { SheetDemo } from "./Profile";
 
 export const DashboardNavBar = () => {

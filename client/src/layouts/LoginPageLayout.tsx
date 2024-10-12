@@ -14,6 +14,8 @@ export const LoginPage = () => {
   const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailSignup, setEmailSignup] = useState('');
+  const [passwordSignup, setPasswordSignup] = useState('');
   const [fullName, setName] = useState('');
   const navigate = useNavigate();
   
@@ -36,8 +38,13 @@ export const LoginPage = () => {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post<AuthResponse>('http://localhost:5000/api/auth/register', { fullName, email, password });
-      handleTabChange('login');
+      await axios.post<AuthResponse>('http://localhost:5000/api/auth/register', { fullName, email: emailSignup, password: passwordSignup });
+      
+      const loginResponse = await axios.post<AuthResponse>('http://localhost:5000/api/auth/login', { email: emailSignup, password: passwordSignup });
+      
+      localStorage.setItem('token', loginResponse.data.token);
+      
+      navigate('/dashboard');
     } catch (error) {
       console.error('Signup failed:', error);
     }
@@ -64,7 +71,6 @@ export const LoginPage = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Login Form */}
           <TabsContent value="login" className="p-4">
             <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Login</h2>
             <form onSubmit={handleLogin}>
@@ -146,8 +152,8 @@ export const LoginPage = () => {
                   id="signup-email"
                   placeholder="Enter your email"
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)} 
+                  value={emailSignup}
+                  onChange={(e) => setEmailSignup(e.target.value)} 
                   required
                 />
               </div>
@@ -161,8 +167,8 @@ export const LoginPage = () => {
                   id="signup-password"
                   placeholder="Create a password"
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)} 
+                  value={passwordSignup}
+                  onChange={(e) => setPasswordSignup(e.target.value)} 
                   required
                 />
               </div>
