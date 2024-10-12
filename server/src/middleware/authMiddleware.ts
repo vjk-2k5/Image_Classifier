@@ -26,7 +26,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
     jwt.verify(token, JWT_SECRET, (err, user) => {
         if (err) {
             res.sendStatus(403); 
-            console.log(token,err,user);
+            //console.log(token,err,user);
             return;
         }
         req.user = user as { id: string };
