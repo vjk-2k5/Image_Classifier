@@ -44,8 +44,6 @@ export const getResults = async (req: Request, res: Response): Promise<void> => 
     console.error('Error:', error);
     res.status(500).send('Server error');
   }
-
-
 };
 
 export const getResultsById = async (req: Request, res: Response): Promise<void> => {
