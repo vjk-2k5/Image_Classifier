@@ -8,5 +8,6 @@
     "target": "ES6",
     "strict": true
   },
-  "include": ["src/**/*"]
+
+  "include": ["src/**/*", "express.d.ts"]
 }

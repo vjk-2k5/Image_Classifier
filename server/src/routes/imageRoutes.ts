@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import upload from '../middleware/uploadImage';
 import { uploadImage,getResults,getResultsById } from '../controllers/imageController';
+import { authenticateToken } from '../middleware/authMiddleware';
 
 const router = Router();
 
