@@ -10,8 +10,7 @@ const MainContent = () => {
   const [accuracy, setAccuracy] = useState<number | null>(null);
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false); // New loading state
-
+  const [loading, setLoading] = useState<boolean>(false);
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -36,7 +35,7 @@ const MainContent = () => {
       return;
     }
   
-    setLoading(true); // Start loading
+    setLoading(true); 
     const formData = new FormData();
     
     if (selectedImage) {
@@ -56,7 +55,7 @@ const MainContent = () => {
         formData.append('image', file); 
       } catch (error) {
         console.error('Error fetching image from URL:', error);
-        setLoading(false); // End loading if error
+        setLoading(false); 
         return; 
       }
     }
@@ -80,7 +79,7 @@ const MainContent = () => {
     } catch (error) {
       console.error('Error uploading image:', error);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false);
       setSelectedImage(null);
       setImageUrl('');
     }
