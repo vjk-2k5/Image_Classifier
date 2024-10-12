@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 const ProtectedRoute: React.FC<{ element: JSX.Element } & RouteProps> = ({ element }) => {
   const { isAuthenticated } = useAuth();
 
-  return isAuthenticated ? element : <Navigate to="/" replace />; 
+  return isAuthenticated ? element : <Navigate to="/dashboard" replace />; 
 };
 
 export default ProtectedRoute;

@@ -25,26 +25,14 @@ export const LoginPage = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-  
-      const data: AuthResponse = await response.json();
-      localStorage.setItem('token', data.token);
+      const response = axios.post<AuthResponse>('http://localhost:5000/api/auth/login', { email, password });
+      localStorage.setItem('token', (await response).data.token);
       navigate('/dashboard');
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Login failed:', error);
     }
   };
-
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
