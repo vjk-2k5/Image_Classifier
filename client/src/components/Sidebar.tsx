@@ -1,8 +1,17 @@
 
 import { Button } from "./Button"; 
 import { FaHome, FaCog, FaImage, FaBrain, FaSignOutAlt,FaHistory } from "react-icons/fa"; 
+import { useNavigate } from 'react-router-dom';
 
 export const Sidebar = () => {
+
+  const navigate = useNavigate(); 
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); 
+    navigate('/');
+  };
+
   return (
     <aside className="h-screen w-64 bg-white text-blue-900 shadow-lg border-r border-blue-200">
       <nav className="p-6">
@@ -61,11 +70,12 @@ export const Sidebar = () => {
               variant="link"
               asChild
               className="flex items-center space-x-2 p-2 rounded-md text-blue-900 hover:bg-blue-100 transition-colors"
+              onClick={handleLogout} 
             >
-              <a href="/" className="flex items-center">
+              <span className="flex items-center">
                 <FaSignOutAlt className="w-5 h-5" />
                 <span className="text-md">Logout</span>
-              </a>
+              </span>
             </Button>
           </li>
           <li className="mb-4">

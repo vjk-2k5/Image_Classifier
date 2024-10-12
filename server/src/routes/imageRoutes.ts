@@ -5,8 +5,8 @@ import { authenticateToken } from '../middleware/authMiddleware';
 
 const router = Router();
 
-router.post('/upload', upload.single('image'), uploadImage);
-router.get('/results', getResults);
-router.get('/results/:id',getResultsById);
+router.post('/upload',authenticateToken, upload.single('image'), uploadImage);
+router.get('/results',authenticateToken, getResults);
+router.get('/results/:id',authenticateToken,getResultsById);
 
 export default router;
